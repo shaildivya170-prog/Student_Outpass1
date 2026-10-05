@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Warden Login</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>🧑‍💼 Warden Dashboard</h1><p>Approve or reject student outpass requests</p></div><div class="container"><div id="loginBox" class="login-box"><h2>Warden Login</h2><div id="msg"></div><label>Email</label><input id="email" type="email"><label>Password</label><input id="pass" type="password"><button onclick="wlogin()">Login</button></div><div id="panel" style="display:none"><div class="box"><div class="row"><h2>Pending Requests</h2><button class="right" onclick="logout()">Logout</button></div><div id="requests"></div></div></div></div>
+<script src="app.js"></script><script>
+let wu=user();if(wu&&wu.role==='warden')showPanel();
+function wlogin(){const e=email.value.trim(),p=pass.value.trim(),w=USERS.wardens.find(x=>x.email===e&&x.password===p);if(!w){msg.innerHTML='<div class="alert error">Invalid email or password.</div>';return}setUser({role:'warden',...w});showPanel()}
+function showPanel(){loginBox.style.display='none';panel.style.display='block';render()}
+function render(){const rows=data().filter(x=>x.status==='Pending');requests.innerHTML=rows.length?rows.map(x=>`<div class="card" style="margin-bottom:15px"><h3>${esc(x.code)}</h3><p><b>Student:</b> ${esc(x.student.name)} (${esc(x.student.code)})</p><p><b>Date:</b> ${x.date} | <b>Out:</b> ${x.out} | <b>Return:</b> ${x.ret}</p><p><b>Destination:</b> ${esc(x.destination)}</p><p><b>Reason:</b> ${esc(x.reason)}</p><div class="row"><button class="btn-success" onclick="approve('${x.code}')">Approve</button><button class="btn-danger" onclick="rejectReq('${x.code}')">Reject</button></div></div>`).join(''):'<div class="alert">No pending requests.</div>'}
+function approve(c){let a=data(),x=a.find(v=>v.code===c);x.status='Approved';saveData(a);render()}
+function rejectReq(c){let reason=prompt('Enter rejection reason:');if(reason===null)return;let a=data(),x=a.find(v=>v.code===c);x.status='Rejected';x.rejection=reason||'Rejected by warden';saveData(a);render()}
+</script></body></html>

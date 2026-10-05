@@ -1,0 +1,25 @@
+
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef5ff;color:#222}
+.header{background:#0066cc;color:#fff;padding:22px;text-align:center}
+.header h1{margin:0 0 6px}.header p{margin:0}
+.container{width:94%;max-width:1200px;margin:28px auto}
+.card,.box,.login-box{background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.10);padding:24px}
+.login-box{max-width:430px;margin:70px auto}
+h2{color:#0066cc}label{font-weight:bold;display:block;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ccd8e6;border-radius:8px;font-size:15px}
+textarea{min-height:100px;resize:vertical}
+button,.btn{display:inline-block;border:0;border-radius:8px;padding:11px 18px;background:#0066cc;color:#fff;font-weight:bold;cursor:pointer;text-decoration:none}
+button:hover,.btn:hover{background:#004c99}.btn-danger{background:#d9534f}.btn-success{background:#198754}.btn-light{background:#e8f1ff;color:#0066cc}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:15px;margin-bottom:22px}
+.stat{text-align:center;background:#fff;border-radius:12px;padding:18px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.stat h2{font-size:28px;margin:4px}.stat p{font-weight:bold;margin:4px}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.table-box{background:#fff;padding:20px;border-radius:12px;overflow-x:auto;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+table{width:100%;border-collapse:collapse;min-width:900px}th{background:#0066cc;color:#fff;padding:11px}td{padding:10px;border-bottom:1px solid #ddd;text-align:center}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:bold;background:#eee}
+.Pending{background:#fff3cd;color:#856404}.Approved{background:#d1e7dd;color:#0f5132}.Completed{background:#cff4fc;color:#055160}.Rejected{background:#f8d7da;color:#842029}.Expired{background:#e2e3e5;color:#41464b}
+.alert{padding:12px;border-radius:8px;margin:12px 0;background:#e8f1ff}.error{background:#f8d7da;color:#842029}.success{background:#d1e7dd;color:#0f5132}
+.center{text-align:center}.muted{color:#666}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.right{margin-left:auto}
+#qrcode{margin:20px auto;width:max-content}
+@media(max-width:600px){.container{width:92%}.header h1{font-size:23px}}

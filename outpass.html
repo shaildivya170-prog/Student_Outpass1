@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Digital Outpass</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>🎫 Digital Outpass</h1><p>Approved Outpass QR</p></div><div class="container"><div class="card center" id="card"></div></div>
+<script src="app.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>
+const u=requireStudent();if(u){const x=data().find(v=>v.student.code===u.code&&v.status==='Approved');const c=document.getElementById('card');if(!x)c.innerHTML='<div class="alert">No approved outpass found.</div><a class="btn" href="dashboard.html">Back</a>';else{c.innerHTML=`<h2>Approved Digital Outpass</h2><p><b>Student:</b> ${esc(u.name)}</p><p><b>Student ID:</b> ${esc(u.code)}</p><p><b>Date:</b> ${esc(x.date)}</p><p><b>Out Time:</b> ${esc(x.out)}</p><p><b>Return Time:</b> ${esc(x.ret)}</p><p><b>Destination:</b> ${esc(x.destination)}</p><p><b>Outpass Code:</b> ${esc(x.code)}</p><div id="qrcode"></div><p class="muted">Show this QR code to the guard at OUT and IN.</p><a class="btn" href="dashboard.html">Back</a>`;new QRCode(document.getElementById('qrcode'),{text:x.code,width:220,height:220})}}
+</script></body></html>

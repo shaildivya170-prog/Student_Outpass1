@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Dashboard</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>🎓 Student Dashboard</h1><p>College Outpass Management System</p></div>
+<div class="container"><div class="box"><div class="row"><div><h2 id="welcome"></h2><p class="muted">Manage your outpass requests digitally.</p></div><div class="right"><button onclick="logout()">Logout</button></div></div>
+<div class="grid"><a class="btn center" href="apply.html">➕ Apply for Outpass</a><a class="btn center" href="status.html">📋 My Requests</a><a class="btn center" href="outpass.html">🎫 Digital Outpass</a></div></div></div>
+<script src="app.js"></script><script>const u=requireStudent();if(u)document.getElementById('welcome').textContent='Welcome, '+u.name;</script></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Login | College Outpass</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>🎓 College Outpass System</h1><p>GEMS Polytechnic College</p></div>
+<div class="login-box"><h2>Student Login</h2><div id="msg"></div>
+<label>Student Name</label><input id="name" placeholder="Enter your name">
+<label>Student ID</label><input id="code" placeholder="STGEMS2483">
+button
+<button onclick="login()">Login</button>
+<div class="nav"><a class="btn btn-light" href="warden.html">Warden Login</a><a class="btn btn-light" href="guard.html">Guard Login</a><a class="btn btn-light" href="admin.html">Admin Reports</a></div>
+<p class="muted">Demo student: <b>divya kumari</b> / <b>STGEMS2483</b></p></div>
+<script src="app.js"></script><script>
+function login(){const n=document.getElementById('name').value.trim(),c=document.getElementById('code').value.trim();if(n.toLowerCase()===USERS.student.name&&c===USERS.student.code){setUser({role:'student',...USERS.student});location.href='dashboard.html'}else document.getElementById('msg').innerHTML='<div class="alert error">Invalid student name or ID.</div>'}
+</script></body></html>

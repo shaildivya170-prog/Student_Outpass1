@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guard Login - College Outpass</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>🛡️ Guard Verification</h1><p>Scan student QR at OUT and IN</p></div><div class="container"><div id="loginBox" class="login-box"><h2>Guard Login</h2><div id="msg"></div><label>Email</label><input id="email" type="email" value="guard@gemspolytechnic.edu.in"><label>Password</label><input id="pass" type="password" value="12345"><button onclick="glogin()">Login</button></div><div id="panel" style="display:none"><div class="box center"><h2>QR Scanner</h2><div id="reader" style="max-width:500px;margin:auto"></div><div id="result"></div><button onclick="location.href='index.html'">Student Login</button></div></div></div>
+<script src="app.js"></script><script src="https://unpkg.com/html5-qrcode"></script><script>
+let gu=user();if(gu&&gu.role==='guard')start();
+function glogin(){const e=email.value.trim(),p=pass.value.trim();if(e===USERS.guard.email&&p===USERS.guard.password){setUser({role:'guard',...USERS.guard});start()}else msg.innerHTML='<div class="alert error">Invalid email or password.</div>'}
+function start(){loginBox.style.display='none';panel.style.display='block';const scanner=new Html5QrcodeScanner('reader',{fps:10,qrbox:250});scanner.render(onScan)}
+function onScan(text){const a=data(),x=a.find(v=>v.code===text);if(!x){result.innerHTML='<div class="alert error">Invalid QR Code.</div>';return}if(x.status!=='Approved'){result.innerHTML='<div class="alert error">This outpass is '+esc(x.status)+'.</div>';return}if(x.scanCount>=2){result.innerHTML='<div class="alert error">This QR has already been scanned twice.</div>';return}
+if(x.scanCount===0){x.scanCount=1;x.actualOut=new Date().toLocaleString();result.innerHTML=`<div class="alert success"><b>OUT SUCCESSFUL</b><br>${esc(x.student.name)}<br>Return by ${esc(x.ret)}</div>`}
+else{x.scanCount=2;x.actualIn=new Date().toLocaleString();x.status='Completed';result.innerHTML=`<div class="alert success"><b>IN SUCCESSFUL</b><br>${esc(x.student.name)}<br>Outpass completed.</div>`}
+saveData(a)}
+</script></body></html>

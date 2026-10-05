@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Outpass Requests</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>📋 My Outpass Requests</h1><p>College Outpass Management System</p></div><div class="container">
+<div class="table-box"><div class="row"><h2>My Requests</h2><a class="btn right" href="dashboard.html">Dashboard</a></div><div id="table"></div></div></div>
+<script src="app.js"></script><script>
+const u=requireStudent();if(u)render();
+function render(){const rows=data().filter(x=>x.student.code===u.code);document.getElementById('table').innerHTML=rows.length?`<table><tr><th>Outpass ID</th><th>Date</th><th>Out</th><th>Return</th><th>Destination</th><th>Reason</th><th>Status</th><th>Rejection</th></tr>${rows.map(x=>`<tr><td>${esc(x.code)}</td><td>${esc(x.date)}</td><td>${esc(x.out)}</td><td>${esc(x.ret)}</td><td>${esc(x.destination)}</td><td>${esc(x.reason)}</td><td>${statusBadge(x.status)}</td><td>${esc(x.rejection||'-')}</td></tr>`).join('')}</table>`:'<div class="alert">No outpass requests found.</div>'}
+</script></body></html>

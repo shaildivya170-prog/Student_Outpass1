@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Apply for Outpass</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="header"><h1>📝 Apply for Outpass</h1><p>College Outpass Management System</p></div>
+<div class="container"><div class="card"><div id="msg"></div>
+<label>Date</label><input id="date" type="date">
+<label>Out Time</label><input id="out" type="time">
+<label>Return Time</label><input id="ret" type="time">
+<label>Destination</label><input id="destination" placeholder="Enter destination">
+<label>Reason</label><textarea id="reason" placeholder="Enter reason"></textarea>
+<div class="nav"><button onclick="submitRequest()">Submit Request</button><a class="btn btn-light" href="dashboard.html">Back</a></div></div></div>
+<script src="app.js"></script><script>
+requireStudent();document.getElementById('date').value=new Date().toISOString().slice(0,10);
+function submitRequest(){let d=document.getElementById('date').value,o=document.getElementById('out').value,r=document.getElementById('ret').value,des=document.getElementById('destination').value.trim(),reason=document.getElementById('reason').value.trim();let m=document.getElementById('msg');
+if(!d||!o||!r||!des||!reason){m.innerHTML='<div class="alert error">Please fill all fields.</div>';return}
+if(r<=o){m.innerHTML='<div class="alert error">Return time must be later than out time.</div>';return}
+const u=user(), arr=data();arr.unshift({id:Date.now(),code:code(),student:u,date:d,out:o,ret:r,destination:des,reason,status:'Pending',rejection:'',actualOut:'',actualIn:'',scanCount:0});saveData(arr);m.innerHTML='<div class="alert success">Outpass request submitted successfully.</div>';setTimeout(()=>location.href='status.html',700)}
+</script></body></html>
